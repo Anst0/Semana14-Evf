@@ -1,23 +1,25 @@
-@server = https://fictional-couscous-vgqvx74v6cv76-8080.app.github.dev
+@server = https://glowing-couscous-j4q5xwwpw257g5-8080.app.github.dev
 ###
-GET {{server}}/api/instrumentos/2
+GET {{server}}/api/marcas/2
 ###
-POST {{server}}/api/instrumentos
+POST {{server}}/api/marcas
 Content-Type: application/json
 
-{"nombre": "Quena", "categoria": "Viento", "descripcion": "Como una flauta"}
+
+{"nombre": "Motorla", "categoria": "electrodomestico", "descripcion": "Duracion de bateria extendida"}
 ###
-GET {{server}}/api/musicos
+GET {{server}}/api/productos
 ###
-POST {{server}}/api/musicos
+POST {{server}}/api/productos
 Content-Type: application/json
 
-{"nombre": "Joaquín"}
+{"nombre": "Juan"}
 ###
-GET {{server}}/api/bandas
+GET {{server}}/api/ventas
 ###
-GET {{server}}/api/bandas/1
+GET {{server}}/api/ventas/1
 ###
-GET {{server}}/api/bandas/1/formacion
+GET {{server}}/api/ventas/1/formacion
 ###
-GET {{server}}/api/integrantes
+GET {{server}}/api/ingresos
+

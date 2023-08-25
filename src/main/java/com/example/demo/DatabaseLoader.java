@@ -7,47 +7,52 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-	private final InstrumentoRepository repositoryI;
-	private final MusicoRepository repositoryM;
-	private final BandaRepository repositoryB;
-	private final IntegranteRepository repositoryN;
+	private final MarcaRepository repositoryM;
+	private final ProductoRepository repositoryP;
+	private final VentaRepository repositoryV;
+	private final IngresoRepository repositoryI;
+
 
 	@Autowired
-	public DatabaseLoader(
-		InstrumentoRepository repositoryI,
-		MusicoRepository repositoryM,
-		BandaRepository repositoryB,
-		IntegranteRepository repositoryN
-		) {
-		this.repositoryI = repositoryI;
+	public DatabaseLoader(MarcaRepository repositoryM,
+						ProductoRepository repositoryP,
+						VentaRepository repositoryV,
+						IngresoRepository repositoryI) {
+
 		this.repositoryM = repositoryM;
-		this.repositoryB = repositoryB;
-		this.repositoryN = repositoryN;
+		this.repositoryP = repositoryP;
+		this.repositoryV = repositoryV;
+		this.repositoryI = repositoryI;
+
 	}
+
 
 	@Override
 	public void run(String... strings) throws Exception {
+		this.repositoryM.save(new Marca("Adidas", "Ropa", "Ropa de verano"));
+		this.repositoryM.save(new Marca("Nestle","Comida","Comida Enlatada"));
+		this.repositoryM.save(new Marca("Intel","Equipo","Equipo tecnologico"));
+		Marca iProd = new Marca("Promar","servicio",".");
+		this.repositoryM.save(iProd);
+		Marca iJuegos = new Marca("Nintendo","virtual", ".");
+		this.repositoryM.save(iJuegos);
+		this.repositoryM.save(new Marca("Batería","Instrumento","."));
 
-		this.repositoryI.save(new Instrumento("Guitarra", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
-		Instrumento iVoz = new Instrumento("Voz","Viento",".");
-		this.repositoryI.save(iVoz);
-		Instrumento iGuitarraElectrica = new Instrumento("Guitarra Electrica","Electrónico", ".");
-		this.repositoryI.save(iGuitarraElectrica);
-		this.repositoryI.save(new Instrumento("Batería","Percusión","."));
 
-		this.repositoryM.save(new Musico("Daniel F"));
-		Musico mFreddy = new Musico("Freddy");
-		this.repositoryM.save(mFreddy);
-		Musico mBrian = new Musico("Brian");
-		this.repositoryM.save(mBrian);
+		this.repositoryP.save(new Producto("Lego"));
+		Producto pSamsung = new Producto("Samsung");
+		this.repositoryP.save(pSamsung);
+		Producto pRedmi = new Producto("Redmi");
+		this.repositoryP.save(pRedmi);
 
-		Banda bQueen = new Banda("Queen");
-		this.repositoryB.save(bQueen);
 
-		this.repositoryN.save(new Integrante(bQueen, mFreddy, iVoz));
-		this.repositoryN.save(new Integrante(bQueen, mBrian, iGuitarraElectrica));
+		Venta vCelu = new Venta("Celular");
+		this.repositoryV.save(vCelu);
+
+
+		this.repositoryI.save(new Ingreso(vCelu, pSamsung, iProd));
+		this.repositoryI.save(new Ingreso(vCelu, pRedmi, iJuegos));
+
 
 
 	}

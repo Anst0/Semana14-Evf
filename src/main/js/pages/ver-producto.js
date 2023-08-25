@@ -1,6 +1,6 @@
 const React = require('react');
 const { Link, useParams } = require('react-router-dom');
-const {useState, useEffect} = require('react');
+const {useState} = require('react');
 const client = require('../client');
 
 const VerMusicoPage = () => {
@@ -8,12 +8,10 @@ const VerMusicoPage = () => {
     let { id } = useParams();
     const [musico, setMusico] = useState({});
 
-    useEffect(() => {
-        client({
-            method: 'GET',
-            path: '/api/musicos/' + id
-        }).done(response=>setMusico(response.entity))
-    }, [])
+    client({
+        method: 'GET',
+        path: '/api/musicos/' + id
+    }).done(response=>setMusico(response.entity))
 
 
     return (
